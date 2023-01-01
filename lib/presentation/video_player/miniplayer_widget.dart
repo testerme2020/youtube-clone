@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:miniplayer/miniplayer.dart';
 import 'package:youtube/presentation/main/screen_main.dart';
 import 'package:youtube/presentation/video_player/widgets/action_buttons_sections_widget.dart';
 import 'package:youtube/presentation/video_player/widgets/channel_data_section_widget.dart';
@@ -171,7 +172,9 @@ class MiniplayerMiniWidget extends StatelessWidget {
               // Play Button
               Flexible(
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    miniplayerController.animateToHeight(state: PanelState.MAX);
+                  },
                   icon: const Icon(Icons.play_arrow),
                 ),
               ),

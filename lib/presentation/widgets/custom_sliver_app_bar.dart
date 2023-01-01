@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 class CustomSliverAppBar extends StatelessWidget {
   const CustomSliverAppBar({
     Key? key,
+    this.bottom,
   }) : super(key: key);
+
+  final PreferredSizeWidget? bottom;
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +54,7 @@ class CustomSliverAppBar extends StatelessWidget {
           ),
         )
       ],
+      bottom: bottom,
     );
   }
 }

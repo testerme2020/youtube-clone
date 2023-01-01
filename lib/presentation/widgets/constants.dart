@@ -24,4 +24,9 @@ class Constants {
     width: double.infinity,
     color: Colors.grey.shade800,
   );
+
+  // Empty Space
+  static const Widget height10 = SizedBox(
+    height: 10,
+  );
 }

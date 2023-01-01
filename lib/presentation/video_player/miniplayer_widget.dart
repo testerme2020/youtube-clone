@@ -34,30 +34,31 @@ class MiniplayerWidget extends StatelessWidget {
       ),
     );
 
-    return GestureDetector(
-      onPanEnd: height == 50
-          ? (details) {
-              if (!(details.velocity.pixelsPerSecond.dy < 10) && height == 50) {
-                hideMiniplayerNotifier.value = true;
-              }
-            }
-          : null,
-      child: SizedBox(
-        height: miniplayerMinHeight,
-        child: Column(
-          children: [
-            // Miniplayer Mini Widget
-            MiniplayerMiniWidget(videoPlayer: videoPlayer),
+    return SizedBox(
+      height: miniplayerMinHeight,
+      child: Column(
+        children: [
+          // Miniplayer Mini Widget
+          GestureDetector(
+            onPanEnd: height == 50
+                ? (details) {
+                    if (!(details.velocity.pixelsPerSecond.dy < 10) &&
+                        height == 50) {
+                      hideMiniplayerNotifier.value = true;
+                    }
+                  }
+                : null,
+            child: MiniplayerMiniWidget(videoPlayer: videoPlayer),
+          ),
 
-            // Expanded View
-            Expanded(
-              child: Opacity(
-                opacity: percentage,
-                child: const MiniplayerExpandWidget(),
-              ),
+          // Expanded View
+          Expanded(
+            child: Opacity(
+              opacity: percentage,
+              child: const MiniplayerExpandWidget(),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

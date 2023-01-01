@@ -93,10 +93,19 @@ class ScreenShorts extends StatelessWidget {
                               ),
 
                               // More Button
-                              IconButtonWithLabel(
-                                icon: Icons.more_horiz_outlined,
-                                label: "More",
-                                onTap: () {},
+                              Material(
+                                color: Colors.transparent,
+                                child: InkWell(
+                                  borderRadius: BorderRadius.circular(50),
+                                  onTap: () {},
+                                  child: const Padding(
+                                    padding: EdgeInsets.all(15.0),
+                                    child: Icon(
+                                      Icons.more_horiz_outlined,
+                                      size: 30,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ],
                           )

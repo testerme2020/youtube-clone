@@ -7,18 +7,21 @@ class ScreenHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        const CustomSliverAppBar(),
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (context, index) {
-              return const VideoListItemsWidget();
-            },
-            childCount: 20,
+    return ScrollConfiguration(
+      behavior: MyBehavior(),
+      child: CustomScrollView(
+        slivers: [
+          const CustomSliverAppBar(),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                return const VideoListItemsWidget();
+              },
+              childCount: 20,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

@@ -44,7 +44,6 @@ class VideoListItemsWidget extends StatelessWidget {
                   fit: BoxFit.fitWidth,
                   image: NetworkImage(
                     thumbnailUrl ??
-                        // "https://google.com",
                         "https://assets.www.warnerbroscanada.com/drupal-root/public/article/media/ajax/fieldpromoimage/und/0/form-b8om7kxt2ciufdefy30bwvecg4ntjkewuhjpiifbkug/tj-blog-banner2.jpg",
                   ),
                 ),

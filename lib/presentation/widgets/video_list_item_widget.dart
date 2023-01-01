@@ -56,7 +56,9 @@ class VideoListItemsWidget extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: CircleAvatar(
                       backgroundColor: Colors.white12,
-                      backgroundImage: NetworkImage(channelIconUrl ?? ''),
+                      backgroundImage: channelIconUrl != null
+                          ? NetworkImage(channelIconUrl!)
+                          : null,
                     ),
                   ),
                   Expanded(

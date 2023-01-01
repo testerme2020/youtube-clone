@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:youtube/presentation/widgets/custom_sliver_app_bar.dart';
 import 'package:youtube/presentation/widgets/video_list_item_widget.dart';
 
 class ScreenHome extends StatelessWidget {
@@ -8,16 +9,7 @@ class ScreenHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        SliverAppBar(
-          floating: true,
-          snap: true,
-          backgroundColor: Theme.of(context).primaryColor,
-          leadingWidth: 100,
-          leading: Padding(
-            padding: const EdgeInsets.only(left: 10.0),
-            child: Image.asset("assets/yt_logo_dark.png"),
-          ),
-        ),
+        const CustomSliverAppBar(),
         SliverList(
           delegate: SliverChildBuilderDelegate(
             (context, index) {

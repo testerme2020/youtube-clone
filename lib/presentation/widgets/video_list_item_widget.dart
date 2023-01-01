@@ -5,70 +5,85 @@ import 'package:youtube/presentation/main/screen_main.dart';
 class VideoListItemsWidget extends StatelessWidget {
   const VideoListItemsWidget({
     Key? key,
+    this.thumbnailUrl,
+    this.title,
+    this.channelIconUrl,
+    this.channelTitle,
+    this.views,
+    this.uploadDate,
+    this.onTap,
   }) : super(key: key);
+
+  final String? thumbnailUrl;
+  final String? title;
+  final String? channelIconUrl;
+  final String? channelTitle;
+  final String? views;
+  final String? uploadDate;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return Material(
       child: InkWell(
         highlightColor: Colors.grey.shade800,
-        onTap: () {
-          hideMiniplayerNotifier.value = false;
-          miniplayerController.animateToHeight(state: PanelState.MAX);
-        },
+        onTap: onTap ??
+            () {
+              hideMiniplayerNotifier.value = false;
+              miniplayerController.animateToHeight(state: PanelState.MAX);
+            },
         child: Padding(
           padding: const EdgeInsets.only(bottom: 10.0),
           child: Column(
             children: [
-              Image(
-                width: MediaQuery.of(context).size.width,
-                fit: BoxFit.fitWidth,
-                image: const NetworkImage(
-                  "https://assets.www.warnerbroscanada.com/drupal-root/public/article/media/ajax/fieldpromoimage/und/0/form-b8om7kxt2ciufdefy30bwvecg4ntjkewuhjpiifbkug/tj-blog-banner2.jpg",
+              Container(
+                constraints: const BoxConstraints(minHeight: 200),
+                color: Colors.white12,
+                child: Image(
+                  width: MediaQuery.of(context).size.width,
+                  fit: BoxFit.fitWidth,
+                  image: NetworkImage(
+                    thumbnailUrl ??
+                        // "https://google.com",
+                        "https://assets.www.warnerbroscanada.com/drupal-root/public/article/media/ajax/fieldpromoimage/und/0/form-b8om7kxt2ciufdefy30bwvecg4ntjkewuhjpiifbkug/tj-blog-banner2.jpg",
+                  ),
                 ),
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress?.cumulativeBytesLoaded !=
-                      loadingProgress?.expectedTotalBytes) {
-                    return const LinearProgressIndicator(
-                      minHeight: 250,
-                      color: Colors.black26,
-                    );
-                  } else {
-                    return child;
-                  }
-                },
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: CircleAvatar(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CircleAvatar(
+                      backgroundColor: Colors.white12,
+                      backgroundImage: NetworkImage(channelIconUrl ?? ''),
+                    ),
                   ),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children: [
                           // Video Title
                           Text(
-                            "Tom & Jerry | Tom & Jerry in Full Screen | Classic Cartoon Compilation | WB Kids",
+                            title ??
+                                "Tom & Jerry | Tom & Jerry in Full Screen | Classic Cartoon Compilation | WB Kids",
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 15,
                             ),
                           ),
 
                           // Channel Name
                           Padding(
-                            padding: EdgeInsets.only(top: 5.0),
+                            padding: const EdgeInsets.only(top: 5.0),
                             child: Text(
-                              "WB Kids  •  1.6M views  •  5 years ago",
+                              "${channelTitle ?? "WB Kids"}  •  ${views ?? "1.6M"} views  •  ${uploadDate ?? "5 years"} ago",
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 12,
                                 color: Colors.white54,
                               ),

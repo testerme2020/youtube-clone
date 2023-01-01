@@ -5,7 +5,6 @@ import 'package:youtube/presentation/video_player/widgets/channel_data_section_w
 import 'package:youtube/presentation/video_player/widgets/comments_data_section_widget.dart';
 import 'package:youtube/presentation/video_player/widgets/title_data_section_widget.dart';
 import 'package:youtube/presentation/widgets/constants.dart';
-import 'package:youtube/presentation/widgets/icon_button_with_label.dart';
 import 'package:youtube/presentation/widgets/video_list_item_widget.dart';
 
 class MiniplayerWidget extends StatelessWidget {

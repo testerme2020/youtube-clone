@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:miniplayer/miniplayer.dart';
-import 'package:youtube/presentation/main/screen_main.dart';
 import 'package:youtube/presentation/widgets/video_list_item_widget.dart';
 
 class ScreenHome extends StatelessWidget {

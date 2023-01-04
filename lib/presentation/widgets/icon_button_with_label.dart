@@ -6,7 +6,7 @@ class IconButtonWithLabel extends StatelessWidget {
     required this.icon,
     required this.label,
     required this.onTap,
-    this.iconSize ,
+    this.iconSize,
     this.labelSize,
     this.iconColor,
     this.labelColor,
@@ -32,16 +32,8 @@ class IconButtonWithLabel extends StatelessWidget {
         borderRadius: BorderRadius.circular(100),
         onTap: onTap,
         child: SizedBox(
-          height: height == null && width == null
-              ? 75
-              : height == null && width != null
-                  ? width
-                  : height,
-          width: width == null && height == null
-              ? 75
-              : width == null && height != null
-                  ? height
-                  : width,
+          height: height ?? width ?? 75,
+          width: width ?? height ?? 75,
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Column(

@@ -6,7 +6,7 @@ class IconButtonWithLabel extends StatelessWidget {
     required this.icon,
     required this.label,
     required this.onTap,
-    this.iconSize,
+    this.iconSize ,
     this.labelSize,
     this.iconColor,
     this.labelColor,

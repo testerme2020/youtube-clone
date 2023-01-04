@@ -3,6 +3,7 @@ import 'package:youtube/presentation/shorts/widgets/shorts_channel_data_widget.d
 import 'package:youtube/presentation/video_player/shorts_video_player.dart';
 import 'package:youtube/presentation/widgets/constants.dart';
 import 'package:youtube/presentation/widgets/icon_button_with_label.dart';
+import 'package:youtube/presentation/widgets/like_button_widget.dart';
 
 class ScreenShorts extends StatelessWidget {
   const ScreenShorts({Key? key}) : super(key: key);
@@ -66,13 +67,10 @@ class ScreenShorts extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               // Like Button
-                              IconButtonWithLabel(
-                                icon: Icons.thumb_up_outlined,
-                                label: "Like",
-                                onTap: () {},
-                              ),
+                              const LikeButtonWidget(),
                               // Dislike Button
                               IconButtonWithLabel(
+                                iconSize: 30,
                                 icon: Icons.thumb_down_outlined,
                                 label: "Dislike",
                                 onTap: () {},
@@ -80,6 +78,7 @@ class ScreenShorts extends StatelessWidget {
 
                               // comment Button
                               IconButtonWithLabel(
+                                iconSize: 30,
                                 icon: Icons.comment_outlined,
                                 label: "Comment",
                                 onTap: () {},
@@ -87,6 +86,7 @@ class ScreenShorts extends StatelessWidget {
 
                               // Share Button
                               IconButtonWithLabel(
+                                iconSize: 30,
                                 icon: Icons.share_outlined,
                                 label: "Share",
                                 onTap: () {},

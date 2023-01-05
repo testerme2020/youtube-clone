@@ -46,8 +46,8 @@ class LikeButtonWidgetState extends State<LikeButtonWidget>
     isLiked = widget.isLiked ?? false;
 
     // Setting Height and Width
-    height = height ?? width ?? 75;
-    width = width ?? height ?? 75;
+    height = widget.height ?? widget.width ?? 75;
+    width = widget.width ?? widget.height ?? 75;
 
     // Animation Controller
     _animationController = AnimationController(

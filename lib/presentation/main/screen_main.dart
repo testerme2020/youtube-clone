@@ -12,56 +12,113 @@ const double miniplayerMinHeight = 50;
 final ValueNotifier<bool> hideMiniplayerNotifier = ValueNotifier(true);
 final MiniplayerController miniplayerController = MiniplayerController();
 
+const List<Widget> screens = [
+  ScreenHome(),
+  ScreenShorts(),
+  ScreenAdd(),
+  ScreenSubscriptions(),
+  ScreenLibrary(),
+];
+
 class ScreenMain extends StatelessWidget {
-  const ScreenMain({super.key});
+  ScreenMain({super.key});
+
+  final List<GlobalKey<NavigatorState>> _navigatorKeys = [
+    GlobalKey<NavigatorState>(),
+    GlobalKey<NavigatorState>(),
+    GlobalKey<NavigatorState>(),
+    GlobalKey<NavigatorState>(),
+    GlobalKey<NavigatorState>(),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    const List<Widget> screens = [
-      ScreenHome(),
-      ScreenShorts(),
-      ScreenAdd(),
-      ScreenSubscriptions(),
-      ScreenLibrary(),
-    ];
     final double screenHeight = MediaQuery.of(context).size.height;
-    return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            ValueListenableBuilder(
-              valueListenable: bottomNaviCurrentIndexNotifier,
-              builder: (context, value, child) {
-                return screens[value];
+    return WillPopScope(
+      onWillPop: () async {
+        final isFirstRouteInCurrentTab =
+            !await _navigatorKeys[bottomNaviCurrentIndexNotifier.value]
+                .currentState!
+                .maybePop();
+
+        if (bottomNaviCurrentIndexNotifier.value != 0) {
+          bottomNaviCurrentIndexNotifier.value = 0;
+          return false;
+        }
+
+        // let system handle back button if we're on the first route
+        return isFirstRouteInCurrentTab;
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: Stack(
+            children: [
+              Stack(
+                children: [
+                  _buildOffstageNavigator(context, 0),
+                  _buildOffstageNavigator(context, 1),
+                  _buildOffstageNavigator(context, 2),
+                  _buildOffstageNavigator(context, 3),
+                  _buildOffstageNavigator(context, 4),
+                ],
+              ),
+              ValueListenableBuilder(
+                  valueListenable: hideMiniplayerNotifier,
+                  builder: (context, value, child) {
+                    return Offstage(
+                      offstage: value,
+                      child: Miniplayer(
+                        controller: miniplayerController,
+                        minHeight: miniplayerMinHeight,
+                        maxHeight: screenHeight,
+                        // onDismissed: () {
+                        //   // hideMiniplayerNotifier.value = true;
+                        // },
+                        builder: (height, percentage) {
+                          return MiniplayerWidget(
+                            height: height,
+                            percentage: percentage,
+                          );
+                        },
+                      ),
+                    );
+                  }),
+            ],
+          ),
+        ),
+
+        // Bottom Navigation Bar
+        bottomNavigationBar: const BottomNavigationBarWidget(),
+      ),
+    );
+  }
+
+  Map<String, WidgetBuilder> _routeBuilders(BuildContext context, int index) {
+    return {
+      '/': (context) {
+        return screens.elementAt(index);
+      },
+    };
+  }
+
+  Widget _buildOffstageNavigator(BuildContext context, int index) {
+    var routeBuilders = _routeBuilders(context, index);
+
+    return ValueListenableBuilder(
+        valueListenable: bottomNaviCurrentIndexNotifier,
+        builder: (context, currentIndex, child) {
+          return Offstage(
+            offstage: currentIndex != index,
+            child: Navigator(
+              key: _navigatorKeys[index],
+              onGenerateRoute: (routeSettings) {
+                return MaterialPageRoute(
+                  builder: (context) =>
+                      routeBuilders[routeSettings.name]!(context),
+                );
               },
             ),
-            ValueListenableBuilder(
-                valueListenable: hideMiniplayerNotifier,
-                builder: (context, value, child) {
-                  return Offstage(
-                    offstage: value,
-                    child: Miniplayer(
-                      controller: miniplayerController,
-                      minHeight: miniplayerMinHeight,
-                      maxHeight: screenHeight,
-                      // onDismissed: () {
-                      //   // hideMiniplayerNotifier.value = true;
-                      // },
-                      builder: (height, percentage) {
-                        return MiniplayerWidget(
-                          height: height,
-                          percentage: percentage,
-                        );
-                      },
-                    ),
-                  );
-                }),
-          ],
-        ),
-      ),
-
-      // Bottom Navigation Bar
-      bottomNavigationBar: const BottomNavigationBarWidget(),
-    );
+          );
+        });
   }
 }

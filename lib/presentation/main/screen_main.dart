@@ -41,6 +41,7 @@ class ScreenMain extends StatelessWidget {
                 .currentState!
                 .maybePop();
 
+        // Check Bottom Navigation Status
         if (bottomNaviCurrentIndexNotifier.value != 0) {
           bottomNaviCurrentIndexNotifier.value = 0;
           return false;

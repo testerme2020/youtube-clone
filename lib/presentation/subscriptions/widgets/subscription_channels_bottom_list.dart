@@ -66,7 +66,8 @@ class SubscriptionChannelsBottomList extends StatelessWidget
                   onPressed: () {},
                   style: ButtonStyle(
                     overlayColor: MaterialStateColor.resolveWith(
-                        (states) => Colors.white12),
+                      (states) => Theme.of(context).splashColor,
+                    ),
                   ),
                   child: const Text(
                     "ALL",

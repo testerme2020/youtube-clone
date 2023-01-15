@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           selectedItemColor: Colors.white,
         ),
+        splashColor: Colors.white12,
       ),
       home: ScreenMain(),
     );

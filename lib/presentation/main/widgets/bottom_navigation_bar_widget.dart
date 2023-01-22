@@ -1,4 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:youtube/presentation/home/screen_home.dart';
+import 'package:youtube/presentation/main/screen_main.dart';
 
 final ValueNotifier bottomNaviCurrentIndexNotifier = ValueNotifier(0);
 
@@ -16,6 +19,14 @@ class BottomNavigationBarWidget extends StatelessWidget {
             backgroundColor: Theme.of(context).backgroundColor,
             currentIndex: value,
             onTap: (value) {
+              if (bottomNaviCurrentIndexNotifier.value == value) {
+                if (kDebugMode) {
+                  navigatorKeys[value].currentState?.popUntil((route) {
+                    // ignore: invalid_use_of_protected_member
+                    return !route.hasActiveRouteBelow;
+                  });
+                }
+              }
               bottomNaviCurrentIndexNotifier.value = value;
             },
             selectedFontSize: 12,

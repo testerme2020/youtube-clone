@@ -20,16 +20,16 @@ const List<Widget> screens = [
   ScreenLibrary(),
 ];
 
-class ScreenMain extends StatelessWidget {
-  ScreenMain({super.key});
+final List<GlobalKey<NavigatorState>> navigatorKeys = [
+  GlobalKey<NavigatorState>(),
+  GlobalKey<NavigatorState>(),
+  GlobalKey<NavigatorState>(),
+  GlobalKey<NavigatorState>(),
+  GlobalKey<NavigatorState>(),
+];
 
-  final List<GlobalKey<NavigatorState>> _navigatorKeys = [
-    GlobalKey<NavigatorState>(),
-    GlobalKey<NavigatorState>(),
-    GlobalKey<NavigatorState>(),
-    GlobalKey<NavigatorState>(),
-    GlobalKey<NavigatorState>(),
-  ];
+class ScreenMain extends StatelessWidget {
+  const ScreenMain({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class ScreenMain extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async {
         final isFirstRouteInCurrentTab =
-            !await _navigatorKeys[bottomNaviCurrentIndexNotifier.value]
+            !await navigatorKeys[bottomNaviCurrentIndexNotifier.value]
                 .currentState!
                 .maybePop();
 
@@ -112,7 +112,7 @@ class ScreenMain extends StatelessWidget {
           return Offstage(
             offstage: currentIndex != index,
             child: Navigator(
-              key: _navigatorKeys[index],
+              key: navigatorKeys[index],
               onGenerateRoute: (routeSettings) {
                 return MaterialPageRoute(
                   builder: (context) =>

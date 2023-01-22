@@ -29,6 +29,9 @@ class Constants {
   static const Widget height10 = SizedBox(
     height: 10,
   );
+  static const Widget height50 = SizedBox(
+    height: 50,
+  );
 
   static const Widget width10 = SizedBox(
     width: 10,

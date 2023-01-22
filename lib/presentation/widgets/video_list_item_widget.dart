@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:miniplayer/miniplayer.dart';
+import 'package:youtube/presentation/channel/screen_channel.dart';
+import 'package:youtube/presentation/home/screen_home.dart';
 import 'package:youtube/presentation/main/screen_main.dart';
 
 class VideoListItemsWidget extends StatelessWidget {
@@ -25,6 +27,7 @@ class VideoListItemsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
+      color: Theme.of(context).backgroundColor,
       child: InkWell(
         highlightColor: Colors.grey.shade800,
         onTap: onTap ??
@@ -53,11 +56,20 @@ class VideoListItemsWidget extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: CircleAvatar(
-                      backgroundColor: Colors.white12,
-                      backgroundImage: channelIconUrl != null
-                          ? NetworkImage(channelIconUrl!)
-                          : null,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ScreenChannel(),
+                            ));
+                      },
+                      child: CircleAvatar(
+                        backgroundColor: Colors.white12,
+                        backgroundImage: channelIconUrl != null
+                            ? NetworkImage(channelIconUrl!)
+                            : null,
+                      ),
                     ),
                   ),
                   Expanded(

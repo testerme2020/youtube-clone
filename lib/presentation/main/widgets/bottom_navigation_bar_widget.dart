@@ -13,6 +13,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
         valueListenable: bottomNaviCurrentIndexNotifier,
         builder: (context, value, child) {
           return BottomNavigationBar(
+            backgroundColor: Theme.of(context).backgroundColor,
             currentIndex: value,
             onTap: (value) {
               bottomNaviCurrentIndexNotifier.value = value;

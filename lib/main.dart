@@ -18,12 +18,15 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
-        appBarTheme: AppBarTheme(
-          backgroundColor: Colors.grey[900],
+        primaryColorDark: Colors.black,
+        backgroundColor: Colors.black,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.black,
         ),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           selectedItemColor: Colors.white,
         ),
+        primaryColor: Colors.black,
         splashColor: Colors.white12,
       ),
       home: ScreenMain(),

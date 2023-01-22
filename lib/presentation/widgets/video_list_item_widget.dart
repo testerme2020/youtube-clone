@@ -27,6 +27,7 @@ class VideoListItemsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
+      color: Theme.of(context).backgroundColor,
       child: InkWell(
         highlightColor: Colors.grey.shade800,
         onTap: onTap ??

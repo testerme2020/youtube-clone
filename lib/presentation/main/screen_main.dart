@@ -51,6 +51,7 @@ class ScreenMain extends StatelessWidget {
         return isFirstRouteInCurrentTab;
       },
       child: Scaffold(
+        backgroundColor: Theme.of(context).backgroundColor,
         body: SafeArea(
           child: Stack(
             children: [

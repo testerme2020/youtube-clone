@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:miniplayer/miniplayer.dart';
 import 'package:youtube/presentation/channel/screen_channel.dart';
-import 'package:youtube/presentation/home/screen_home.dart';
 import 'package:youtube/presentation/main/screen_main.dart';
 
 class VideoListItemsWidget extends StatelessWidget {

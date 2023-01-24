@@ -4,7 +4,6 @@ import 'package:youtube/presentation/add/screen_add.dart';
 import 'package:youtube/presentation/home/screen_home.dart';
 import 'package:youtube/presentation/library/screen_library.dart';
 import 'package:youtube/presentation/main/widgets/bottom_navigation_bar_widget.dart';
-import 'package:youtube/presentation/main/widgets/screen_navigator.dart';
 import 'package:youtube/presentation/shorts/screen_shorts.dart';
 import 'package:youtube/presentation/subscriptions/screen_subscriptions.dart';
 import 'package:youtube/presentation/video_player/miniplayer_widget.dart';
